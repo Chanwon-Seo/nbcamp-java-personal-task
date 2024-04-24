@@ -4,11 +4,10 @@ import java.util.Scanner;
 
 /**
  * TODO
- * 5. 연산 결과 10개를 저장할 수 있는 배열을 선언 및 생성하고 연산의 결과를 저장합니다.
- *      - 연산의 결과를 저장할 수 있도록 적합한 타입의 배열을 생성합니다.
- *      - 연산의 결과를 비어있는 곳에 저장하기 위해 저장할 때마다 count 합니다.
+ * 6. 연산 결과가 10개를 초과하는 경우 가장 먼저 저장된 결과를 삭제하고 새로운 연산 결과가 저장될 수 있도록 소스 코드를 수정합니다.
+ *      - 현재 저장된 index가 마지막(9)라면 가장 먼저 저장된 결과 값이 삭제 되고 새로운 결과 값이 마지막 index에 저장될 수 있도록 구현합니다.
+ *      - Hint : 결과 값들이 한칸씩 앞으로 이동되면 되지 않을까?
  */
-
 public class App {
 
     public static void main(String[] args) {
@@ -41,7 +40,6 @@ public class App {
             //사용자로부터 사칙연산 기호 입력
             System.out.print("사칙연산 기호를 입력하세요: ");
             char operator = sc.nextLine().charAt(0);
-
             int result = 0;
             //연산 기호에 따라 계산을 수행
             try {
@@ -61,15 +59,20 @@ public class App {
                 System.out.println(e.getMessage());
             }
 
+            //연산 결과를 배열에 저장
             opArr[count] = result;
             System.out.println("결과 = " + opArr[count]);
             count++;
 
+            //저장공간을 초과한 경우 요구사항
             if (count > 9) {
-                System.out.println("더 이상 저장 공간이 없습니다.");
-                System.out.println("종료합니다.");
-                break;
+                for (int i = 0; i < 9; i++) {
+                    opArr[i] = opArr[i + 1];
+                }
+                count = 9;
+                opArr[count] = 0;
             }
+
             System.out.println("더 계산하시겠습니까? (exit 입력 시 종료)");
             flag = sc.nextLine();
         }
