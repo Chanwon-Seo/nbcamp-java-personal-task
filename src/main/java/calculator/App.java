@@ -4,8 +4,8 @@ import java.util.*;
 
 /**
  * TODO
- * 4. Calculator 클래스에 저장된 연산 결과들 중  가장 먼저 저장된 데이터를 삭제하는 기능을 가진 메서드를 구현한 후
- *    App 클래스의 main 메서드에 삭제 메서드가 활용될 수 있도록 수정합니다.
+ * 5. Calculator 클래스에 저장된 연산 결과들을 조회하는 기능을 가진 메서드를 구현한 후
+ *    App 클래스의 main 메서드에 조회 메서드가 활용될 수 있도록 수정합니다.
  */
 public class App {
     //사칙연산에 필요한 기호 Set
@@ -76,19 +76,16 @@ public class App {
                 System.out.println(e.getMessage());
             }
 
+            //전체 조회 여부 입력
             System.out.println("저장된 연산결과를 조회하시겠습니까? (inquiry 입력 시 조회)");
-            if (sc.nextLine().equals("inquiry")) {
-                int index = 1;
-                if (!calculator.getOpArr().isEmpty()) {
-                    for (Integer i : calculator.getOpArr()) {
-                        System.out.println(index + "번째 결과는 = " + i);
-                        index++;
-                    }
-                } else {
-                    System.out.println("조회할 연산 결과가 없습니다.");
+            try {
+                if (sc.nextLine().equals("inquiry")) {
+                    calculator.inquiryResults();
                 }
-
+            } catch (NoSuchElementException e) {
+                System.out.println(e.getMessage());
             }
+
 
             System.out.println("더 계산하시겠습니까? (exit 입력 시 종료)");
             flag = sc.nextLine();

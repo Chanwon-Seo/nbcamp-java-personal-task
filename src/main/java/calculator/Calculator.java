@@ -37,4 +37,16 @@ public class Calculator {
         }
         System.out.println("remove = " + opArr.poll());
     }
+
+    //저장된 결과값 전체 조회
+    public void inquiryResults() {
+        if (opArr.isEmpty()) {
+            throw new NoSuchElementException("조회할 연산 결과가 없습니다.");
+        }
+        int index = 1;
+        for (Integer i : opArr) {
+            System.out.println(index + "번째 결과는 = " + i);
+            index++;
+        }
+    }
 }
