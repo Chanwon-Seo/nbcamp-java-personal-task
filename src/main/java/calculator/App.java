@@ -4,14 +4,13 @@ import java.util.*;
 
 /**
  * TODO
- * 3. App 클래스의 main 메서드에서 Calculator 클래스의 연산 결과를 저장하고 있는 컬렉션 필드에 직접 접근하지 못하도록 수정합니다. (캡슐화)
- *     - 간접 접근을 통해 필드에 접근하여 가져올 수 있도록 구현합니다. (Getter 메서드)
- *     - 간접 접근을 통해 필드에 접근하여 수정할 수 있도록 구현합니다. (Setter 메서드)
- *     - 위 요구사항을 모두 구현 했다면 App 클래스의 main 메서드에서 위에서 구현한 메서드를 활용 해봅니다.
+ * 4. Calculator 클래스에 저장된 연산 결과들 중  가장 먼저 저장된 데이터를 삭제하는 기능을 가진 메서드를 구현한 후
+ *    App 클래스의 main 메서드에 삭제 메서드가 활용될 수 있도록 수정합니다.
  */
 public class App {
     //사칙연산에 필요한 기호 Set
     private static final Set<Character> operatorSet = new HashSet<>();
+
     static {
         operatorSet.add('+');
         operatorSet.add('-');
@@ -67,14 +66,14 @@ public class App {
                 continue;
             }
 
-
+            //삭제 여부 입력
             System.out.println("가장 먼저 저장된 연산 결과를 삭제하시겠습니까? (remove 입력 시 삭제)");
-            if (sc.nextLine().equals("remove")) {
-                if (!calculator.getOpArr().isEmpty()) {
-                    System.out.println("remove = " + calculator.getOpArr().poll());
-                } else {
-                    System.out.println("삭제할 연산 결과가 없습니다.");
+            try {
+                if (sc.nextLine().equals("remove")) {
+                    calculator.removeResult();
                 }
+            } catch (NoSuchElementException e) {
+                System.out.println(e.getMessage());
             }
 
             System.out.println("저장된 연산결과를 조회하시겠습니까? (inquiry 입력 시 조회)");

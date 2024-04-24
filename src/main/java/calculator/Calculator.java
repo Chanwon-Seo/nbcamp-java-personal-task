@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.util.LinkedList;
+import java.util.NoSuchElementException;
 import java.util.Queue;
 
 @NoArgsConstructor
@@ -29,5 +30,11 @@ public class Calculator {
         return result;
     }
 
-
+    //가장 먼저 저장된 결과값 삭제
+    public void removeResult() {
+        if (opArr.isEmpty()) {
+            throw new NoSuchElementException("삭제할 연산 결과가 없습니다.");
+        }
+        System.out.println("remove = " + opArr.poll());
+    }
 }
