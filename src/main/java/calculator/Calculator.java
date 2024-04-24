@@ -1,16 +1,18 @@
 package calculator;
 
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 
 import java.util.LinkedList;
 import java.util.NoSuchElementException;
 import java.util.Queue;
 
-@NoArgsConstructor
 @Getter
 public class Calculator {
-    private final Queue<Integer> opArr = new LinkedList<>();
+    private final Queue<Integer> opArr;
+
+    public Calculator() {
+        this.opArr = new LinkedList<>();
+    }
 
     //연산 수행
     public int calculate(int firstNum, int secondNum, char operator) {

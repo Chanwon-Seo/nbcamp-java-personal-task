@@ -4,8 +4,7 @@ import java.util.*;
 
 /**
  * TODO
- * 5. Calculator 클래스에 저장된 연산 결과들을 조회하는 기능을 가진 메서드를 구현한 후
- *    App 클래스의 main 메서드에 조회 메서드가 활용될 수 있도록 수정합니다.
+ * 6. Calculator 인스턴스를 생성(new)할 때 생성자를 통해 연산 결과를 저장하고 있는 컬렉션 필드가 초기화 되도록 수정합니다.
  */
 public class App {
     //사칙연산에 필요한 기호 Set
