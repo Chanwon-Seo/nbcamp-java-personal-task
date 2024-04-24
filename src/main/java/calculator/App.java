@@ -1,22 +1,20 @@
 package calculator;
 
-import java.util.Scanner;
+import java.util.*;
 
 /**
  * TODO
- * 6. 연산 결과가 10개를 초과하는 경우 가장 먼저 저장된 결과를 삭제하고 새로운 연산 결과가 저장될 수 있도록 소스 코드를 수정합니다.
- *      - 현재 저장된 index가 마지막(9)라면 가장 먼저 저장된 결과 값이 삭제 되고 새로운 결과 값이 마지막 index에 저장될 수 있도록 구현합니다.
- *      - Hint : 결과 값들이 한칸씩 앞으로 이동되면 되지 않을까?
+ * 7. 연산 결과가 10개로 고정되지 않고 무한이 저장될 수 있도록 소스 코드를 수정합니다.
+ *      - JCF(Java Collection Framework)를 사용합니다. (e.g. List, Set …)
+ *      - “remove”라는 문자열을 입력받으면 가장 먼저 저장된 결과가 삭제될 수 있도록 구현합니다.
  */
 public class App {
 
     public static void main(String[] args) {
         // Scanner 객체 생성
         Scanner sc = new Scanner(System.in);
-        //연산 결과를 저장
-        int[] opArr = new int[10];
-        //연산 횟수
-        int count = 0;
+        //연산 결과를 저장 v1
+        Queue<Integer> opArr = new LinkedList<>();
 
         String flag = "";
         while (!flag.equals("exit")) {
@@ -59,18 +57,15 @@ public class App {
                 System.out.println(e.getMessage());
             }
 
-            //연산 결과를 배열에 저장
-            opArr[count] = result;
-            System.out.println("결과 = " + opArr[count]);
-            count++;
+            opArr.add(result);
+            System.out.println("결과 = " + opArr.peek() + "\n");
 
-            //저장공간을 초과한 경우 요구사항
-            if (count > 9) {
-                for (int i = 0; i < 9; i++) {
-                    opArr[i] = opArr[i + 1];
+            System.out.println("가장 먼저 저장된 연산 결과를 삭제하시겠습니까? (remove 입력 시 삭제)");
+
+            if (sc.nextLine().equals("remove")) {
+                if (!opArr.isEmpty()) {
+                    System.out.println("remove = " + opArr.poll());
                 }
-                count = 9;
-                opArr[count] = 0;
             }
 
             System.out.println("더 계산하시겠습니까? (exit 입력 시 종료)");
