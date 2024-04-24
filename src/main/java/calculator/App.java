@@ -4,9 +4,8 @@ import java.util.*;
 
 /**
  * TODO
- * 7. 연산 결과가 10개로 고정되지 않고 무한이 저장될 수 있도록 소스 코드를 수정합니다.
- *      - JCF(Java Collection Framework)를 사용합니다. (e.g. List, Set …)
- *      - “remove”라는 문자열을 입력받으면 가장 먼저 저장된 결과가 삭제될 수 있도록 구현합니다.
+ * 8. “**inquiry”라는 문자열이 입력되면 저장된 연산 결과 전부를 출력합니다.**
+ *      - foreach(향상된 for문)을 활용하여 구현 해봅니다.
  */
 public class App {
 
@@ -68,9 +67,17 @@ public class App {
                 }
             }
 
+            System.out.println("저장된 연산결과를 조회하시겠습니까? (inquiry 입력 시 조회)");
+            if (sc.nextLine().equals("inquiry")) {
+                int index = 1;
+                for (Integer i : opArr) {
+                    System.out.println(index + "번째 결과는 = " + i);
+                    index++;
+                }
+            }
+
             System.out.println("더 계산하시겠습니까? (exit 입력 시 종료)");
             flag = sc.nextLine();
         }
     }
-
 }
