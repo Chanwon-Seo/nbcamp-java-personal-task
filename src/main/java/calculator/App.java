@@ -4,10 +4,10 @@ import java.util.*;
 
 /**
  * TODO
- * 2. Level 1에서 구현한 App 클래스의 main 메서드에 Calculator 클래스가 활용될 수 있도록 수정합니다.
- *  - 연산 수행 역할은 Calculator 클래스가 담당합니다.
- *      - 연산 결과는 Calculator 클래스의 연산 결과를 저장하는 필드에 저장됩니다.
- *  - 소스 코드 수정 후에도 수정 전의 기능들이 반드시 똑같이 동작해야합니다.
+ * 3. App 클래스의 main 메서드에서 Calculator 클래스의 연산 결과를 저장하고 있는 컬렉션 필드에 직접 접근하지 못하도록 수정합니다. (캡슐화)
+ *     - 간접 접근을 통해 필드에 접근하여 가져올 수 있도록 구현합니다. (Getter 메서드)
+ *     - 간접 접근을 통해 필드에 접근하여 수정할 수 있도록 구현합니다. (Setter 메서드)
+ *     - 위 요구사항을 모두 구현 했다면 App 클래스의 main 메서드에서 위에서 구현한 메서드를 활용 해봅니다.
  */
 public class App {
     //사칙연산에 필요한 기호 Set
@@ -60,8 +60,8 @@ public class App {
             //사칙연산 후 calculator.opArr에 "직접 호출" 후 저장
             try {
                 int result = calculator.calculate(firstNum, secondNum, operator);
-                calculator.opArr.add(result);
-                System.out.println("결과 = " + calculator.opArr.peek() + "\n");
+                calculator.getOpArr().add(result);
+                System.out.println("결과 = " + calculator.getOpArr().peek() + "\n");
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
                 continue;
@@ -70,8 +70,8 @@ public class App {
 
             System.out.println("가장 먼저 저장된 연산 결과를 삭제하시겠습니까? (remove 입력 시 삭제)");
             if (sc.nextLine().equals("remove")) {
-                if (!calculator.opArr.isEmpty()) {
-                    System.out.println("remove = " + calculator.opArr.poll());
+                if (!calculator.getOpArr().isEmpty()) {
+                    System.out.println("remove = " + calculator.getOpArr().poll());
                 } else {
                     System.out.println("삭제할 연산 결과가 없습니다.");
                 }
@@ -80,8 +80,8 @@ public class App {
             System.out.println("저장된 연산결과를 조회하시겠습니까? (inquiry 입력 시 조회)");
             if (sc.nextLine().equals("inquiry")) {
                 int index = 1;
-                if (!calculator.opArr.isEmpty()) {
-                    for (Integer i : calculator.opArr) {
+                if (!calculator.getOpArr().isEmpty()) {
+                    for (Integer i : calculator.getOpArr()) {
                         System.out.println(index + "번째 결과는 = " + i);
                         index++;
                     }

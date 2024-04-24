@@ -1,13 +1,15 @@
 package calculator;
 
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.util.LinkedList;
 import java.util.Queue;
 
 @NoArgsConstructor
+@Getter
 public class Calculator {
-    public Queue<Integer> opArr = new LinkedList<>();
+    private final Queue<Integer> opArr = new LinkedList<>();
 
     //연산 수행
     public int calculate(int firstNum, int secondNum, char operator) {
@@ -26,4 +28,6 @@ public class Calculator {
         }
         return result;
     }
+
+
 }
