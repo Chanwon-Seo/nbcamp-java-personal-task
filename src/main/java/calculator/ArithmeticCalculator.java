@@ -7,10 +7,10 @@ import java.util.NoSuchElementException;
 import java.util.Objects;
 
 @NoArgsConstructor
-public class ArithmeticCalculator extends Calculator {
+public class ArithmeticCalculator<T> extends Calculator {
 
-    private double firstNumber;
-    private double secondNumber;
+    private T firstNumber;
+    private T secondNumber;
     private char operator;
 
     //연산 수행
@@ -18,15 +18,15 @@ public class ArithmeticCalculator extends Calculator {
     double calculate() {
         double result = 0;
         if (Objects.equals(OperatorType.OPERATOR_ADD.getOperatorName(), operator)) {
-            result = getAddOperator().operate(firstNumber, secondNumber);
+            result = getAddOperator().operate((double) firstNumber, (double) secondNumber);
         } else if (Objects.equals(OperatorType.OPERATOR_SUBTRACT.getOperatorName(), operator)) {
-            result = getSubtractOperator().operate(firstNumber, secondNumber);
+            result = getSubtractOperator().operate((double) firstNumber, (double) secondNumber);
         } else if (Objects.equals(OperatorType.OPERATOR_MULTIPLY.getOperatorName(), operator)) {
-            result = getMultiplyOperator().operate(firstNumber, secondNumber);
+            result = getMultiplyOperator().operate((double) firstNumber, (double) secondNumber);
         } else if (Objects.equals(OperatorType.OPERATOR_DIVIDE.getOperatorName(), operator)) {
-            result = getDivideOperator().operate(firstNumber, secondNumber);
+            result = getDivideOperator().operate((double) firstNumber, (double) secondNumber);
         } else if (Objects.equals(OperatorType.OPERATOR_MOD.getOperatorName(), operator)) {
-            result = getModOperator().operate(firstNumber, secondNumber);
+            result = getModOperator().operate((double) firstNumber, (double) secondNumber);
         } else {
             throw new IllegalArgumentException("[ +, -, /, *, % ] 이외에 입력되었습니다.");
         }
@@ -34,7 +34,7 @@ public class ArithmeticCalculator extends Calculator {
     }
 
     //필드값 주입
-    public void toArithmeticCalculator(double firstNumberInput, double secondNumberInput, char operatorInput) {
+    public void toArithmeticCalculator(T firstNumberInput, T secondNumberInput, char operatorInput) {
         this.firstNumber = firstNumberInput;
         this.secondNumber = secondNumberInput;
         this.operator = operatorInput;
