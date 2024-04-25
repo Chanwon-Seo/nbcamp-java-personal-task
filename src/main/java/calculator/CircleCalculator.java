@@ -26,7 +26,6 @@ public class CircleCalculator extends Calculator {
     }
 
     //저장된 결과값 전체 조회
-    @Override
     void opInquiryResults() {
         if (getResults().isEmpty()) {
             throw new NoSuchElementException("조회할 연산 결과가 없습니다.");

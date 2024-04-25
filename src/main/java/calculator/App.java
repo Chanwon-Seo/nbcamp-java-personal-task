@@ -69,8 +69,9 @@ public class App {
         arithmeticCalculator.toArithmeticCalculator(firstNumberInput, secondNumberInput, operatorInput);
 
         //연산 결과값 출력 및 저장
+        double calculate;
         try {
-            double calculate = arithmeticCalculator.calculate();
+            calculate = arithmeticCalculator.calculate();
             arithmeticCalculator.addCalculation(calculate);
             System.out.println("[사칙연산] 결과 = " + calculate + "\n");
         } catch (IllegalArgumentException e) {
@@ -94,7 +95,7 @@ public class App {
         try {
             String removeInput = sc.nextLine().trim();
             if (removeInput.equals("inquiry")) {
-                arithmeticCalculator.opInquiryResults();
+                arithmeticCalculator.opInquiryResults(calculate);
             }
         } catch (NoSuchElementException e) {
             System.out.println(e.getMessage());
