@@ -16,7 +16,7 @@ public class ArithmeticCalculator extends Calculator {
     double calculate() {
         double result = 0;
         if (operator == '+') {
-            result = getAddOperator().operate(firstNumber,secondNumber);
+            result = getAddOperator().operate(firstNumber, secondNumber);
         } else if (operator == '-') {
             result = getSubtractOperator().operate(firstNumber, secondNumber);
         } else if (operator == '*') {
@@ -25,6 +25,8 @@ public class ArithmeticCalculator extends Calculator {
             result = getDivideOperator().operate(firstNumber, secondNumber);
         } else if (operator == '%') {
             result = getModOperator().operate(firstNumber, secondNumber);
+        } else {
+            throw new IllegalArgumentException("[ +, -, /, *, % ] 이외에 입력되었습니다.");
         }
         return result;
     }
