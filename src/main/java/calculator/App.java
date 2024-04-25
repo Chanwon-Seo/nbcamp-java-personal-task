@@ -27,8 +27,8 @@ public class App {
 
     public static void main(String[] args) {
         //Calculator 생성
-        Calculator arithmeticCalculator = new ArithmeticCalculator();
-        Calculator circleCalculator = new CircleCalculator();
+        ArithmeticCalculator arithmeticCalculator = new ArithmeticCalculator();
+        CircleCalculator circleCalculator = new CircleCalculator();
 
         String flag = "";
         while (!flag.equals("exit")) {
@@ -55,10 +55,8 @@ public class App {
     }
 
     //[사칙연산]
-    private static boolean toArithmetic(Calculator calculator) {
+    private static boolean toArithmetic(ArithmeticCalculator arithmeticCalculator) {
         printMessage("사칙연산 계산기\n");
-//        calculator = new ArithmeticCalculator();
-        ArithmeticCalculator arithmeticCalculator = (ArithmeticCalculator) calculator;
         //사칙연산에 필요한 입력
         double firstNumberInput, secondNumberInput;
         char operatorInput;
@@ -114,9 +112,8 @@ public class App {
     }
 
     //[원의 넓이]
-    private static boolean toCircle(Calculator calculator) {
+    private static boolean toCircle(CircleCalculator circleCalculator) {
         printMessage("원의 넓이 계산기\n");
-        CircleCalculator circleCalculator = (CircleCalculator) calculator;
 
         double radius;
         try {
@@ -153,7 +150,7 @@ public class App {
     }
 
     private static char getOperatorInput(String message) {
-        printMessage(message);
+        System.out.printf(message);
         char operatorInput = inputNextLine().charAt(0);
         if (!operatorSet.contains(operatorInput)) {
             throw new InputMismatchException("[ +, -, /, * ] 이외에 입력되었습니다.");
@@ -163,7 +160,7 @@ public class App {
 
     //사용자로부터 값을 입력 받음
     private static double getNumberInput(String message) {
-        printMessage(message);
+        System.out.printf(message);
 
         return Double.parseDouble(inputNextLine());
     }
