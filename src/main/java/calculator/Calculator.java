@@ -8,6 +8,7 @@ import java.util.Queue;
 @Getter
 public abstract class Calculator {
     private final Queue<Double> results;
+
     //TODO
     private final AddOperator addOperator;
     private final SubtractOperator subtractOperator;
@@ -29,6 +30,4 @@ public abstract class Calculator {
     }
 
     abstract double calculate();
-
-    abstract void opInquiryResults();
 }
