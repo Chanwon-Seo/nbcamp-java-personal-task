@@ -1,8 +1,10 @@
 package calculator;
 
+import calculator.enums.OperatorType;
 import lombok.NoArgsConstructor;
 
 import java.util.NoSuchElementException;
+import java.util.Objects;
 
 @NoArgsConstructor
 public class ArithmeticCalculator extends Calculator {
@@ -15,15 +17,15 @@ public class ArithmeticCalculator extends Calculator {
     @Override
     double calculate() {
         double result = 0;
-        if (operator == '+') {
+        if (Objects.equals(OperatorType.OPERATOR_ADD.getOperatorName(), operator)) {
             result = getAddOperator().operate(firstNumber, secondNumber);
-        } else if (operator == '-') {
+        } else if (Objects.equals(OperatorType.OPERATOR_SUBTRACT.getOperatorName(), operator)) {
             result = getSubtractOperator().operate(firstNumber, secondNumber);
-        } else if (operator == '*') {
+        } else if (Objects.equals(OperatorType.OPERATOR_MULTIPLY.getOperatorName(), operator)) {
             result = getMultiplyOperator().operate(firstNumber, secondNumber);
-        } else if (operator == '/') {
+        } else if (Objects.equals(OperatorType.OPERATOR_DIVIDE.getOperatorName(), operator)) {
             result = getDivideOperator().operate(firstNumber, secondNumber);
-        } else if (operator == '%') {
+        } else if (Objects.equals(OperatorType.OPERATOR_MOD.getOperatorName(), operator)) {
             result = getModOperator().operate(firstNumber, secondNumber);
         } else {
             throw new IllegalArgumentException("[ +, -, /, *, % ] 이외에 입력되었습니다.");
