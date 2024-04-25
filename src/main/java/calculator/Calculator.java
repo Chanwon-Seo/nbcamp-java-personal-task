@@ -9,8 +9,17 @@ import java.util.Queue;
 public abstract class Calculator {
     private final Queue<Double> results;
 
+    private final AddOperator addOperator;
+    private final SubtractOperator subtractOperator;
+    private final MultiplyOperator multiplyOperator;
+    private final DivideOperator divideOperator;
+
     public Calculator() {
-        results = new LinkedList<>();
+        this.addOperator = new AddOperator();
+        this.subtractOperator = new SubtractOperator();
+        this.multiplyOperator = new MultiplyOperator();
+        this.divideOperator = new DivideOperator();
+        this.results = new LinkedList<>();
     }
 
     public void addCalculation(Double result) {

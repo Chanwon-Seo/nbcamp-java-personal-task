@@ -5,13 +5,10 @@ import java.util.*;
 
 /**
  * TODO
- * 8. 사칙연산을 수행하는 계산기 ArithmeticCalculator 클래스와 원과 관련된 연산을 수행하는 계산기 CircleCalculator 클래스 2개를 구현합니다.
- *     - 기존에 만들어둔 Calculator 클래스를 수정합니다
- *     - 수정한 Calculator 클래스를 활용하여 ArithmeticCalculator, CircleCalculator 클래스를 구현 해봅니다. (상속)
- *     - 위 요구사항을 구현하게되면 App 클래스의 main 메서드에 오류가 발생할 겁니다.
- *         - 구현한 클래스들을 활용하여 오류가 발생하지 않고 활용될 수 있도록 수정 해보세요!
- *         - 기존에 사칙연산을 저장하던 컬렉션 필드의 타입을 Double로 변경해도 괜찮습니다.
- *         - 필드의 접근 제어자를 변경해도 괜찮습니다.
+ * 9. ArithmeticCalculator 클래스의 연산 메서드에 책임(역할)이 많아 보입니다. 사칙연산 각각의 기능을 담당하는 AddOperator, SubtractOperator, MultiplyOperator, DivideOperator 클래스를 만들어 연산 메서드의 책임을 분리 해봅니다. (SRP)
+ *     - Calculator 클래스에 사칙연산 클래스들을 어떻게 활용할 수 있을지 고민 해봅니다. (포함 관계)
+ *     - 활용 방법을 찾아 적용했을 때 사칙연산 클래스들을 초기화 해야하는데 이때, 반드시 생성자를 활용해 봅니다.
+ *     - 마찬가지로 ArithmeticCalculator 클래스의 연산 메서드를 수정 하더라도 이전과 똑같이 동작해야합니다.
  */
 public class App {
     //사칙연산에 필요한 기호 Set
@@ -43,7 +40,7 @@ public class App {
                     isValid = toCircle(circleCalculator);
                     break;
                 default:
-                    System.out.println("잘못된 입력입니다. 1또는 2를 입력해주세요\n");
+                    printMessage("잘못된 입력입니다. 1또는 2를 입력해주세요\n");
                     break;
             }
 
@@ -52,7 +49,6 @@ public class App {
                 flag = inputNextLine();
             }
         }
-
     }
 
     //[사칙연산]
@@ -153,7 +149,7 @@ public class App {
     }
 
     private static char getOperatorInput(String message) {
-        System.out.print(message);
+        printMessage(message);
         char operatorInput = inputNextLine().charAt(0);
         if (!operatorSet.contains(operatorInput)) {
             throw new InputMismatchException("[ +, -, /, * ] 이외에 입력되었습니다.");
@@ -163,7 +159,7 @@ public class App {
 
     //사용자로부터 값을 입력 받음
     private static double getNumberInput(String message) {
-        System.out.print(message);
+        printMessage(message);
 
         return Double.parseDouble(inputNextLine());
     }

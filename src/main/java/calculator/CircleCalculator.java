@@ -7,6 +7,9 @@ public class CircleCalculator extends Calculator {
     private final static double PI = 3.14159265358979323846;
     private double radius;
 
+    public CircleCalculator() {
+    }
+
     //필드값 주입
     public void toCircleCalculator(double radius) {
         this.radius = radius;

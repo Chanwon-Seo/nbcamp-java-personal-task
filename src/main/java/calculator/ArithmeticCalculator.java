@@ -16,16 +16,13 @@ public class ArithmeticCalculator extends Calculator {
     double calculate() {
         double result = 0;
         if (operator == '+') {
-            result = firstNumber + secondNumber;
+            result = getAddOperator().operate(firstNumber, secondNumber);
         } else if (operator == '-') {
-            result = firstNumber - secondNumber;
+            result = getSubtractOperator().operate(firstNumber, secondNumber);
         } else if (operator == '*') {
-            result = firstNumber * secondNumber;
+            result = getMultiplyOperator().operate(firstNumber, secondNumber);
         } else if (operator == '/') {
-            if (secondNumber == 0) {
-                throw new IllegalArgumentException("나눗셈 연산에서 분모(두 번째 정수)에 0이 입력될 수 없습니다.");
-            }
-            result = firstNumber / secondNumber;
+            result = getDivideOperator().operate(firstNumber, secondNumber);
         }
         return result;
     }
