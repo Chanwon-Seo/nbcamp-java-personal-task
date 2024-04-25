@@ -16,13 +16,15 @@ public class ArithmeticCalculator extends Calculator {
     double calculate() {
         double result = 0;
         if (operator == '+') {
-            result = getAddOperator().operate(firstNumber, secondNumber);
+            result = getAddOperator().operate(firstNumber,secondNumber);
         } else if (operator == '-') {
             result = getSubtractOperator().operate(firstNumber, secondNumber);
         } else if (operator == '*') {
             result = getMultiplyOperator().operate(firstNumber, secondNumber);
         } else if (operator == '/') {
             result = getDivideOperator().operate(firstNumber, secondNumber);
+        } else if (operator == '%') {
+            result = getModOperator().operate(firstNumber, secondNumber);
         }
         return result;
     }
