@@ -51,9 +51,6 @@ public class App {
         } catch (NumberFormatException e) {
             System.out.println("잘못된 입력입니다. 숫자를 입력하세요.");
             return false;
-        } catch (InputMismatchException e) {
-            System.out.println(e.getMessage());
-            return false;
         }
 
         arithmeticCalculator.toArithmeticCalculator(firstNumberInput, secondNumberInput, operatorInput);
@@ -71,25 +68,18 @@ public class App {
 
         //삭제 여부 입력
         System.out.println("[사칙연산]가장 먼저 저장된 연산 결과를 삭제하시겠습니까? (remove 입력 시 삭제)");
-        try {
-            String removeInput = sc.nextLine().trim();
-            if (removeInput.equals("remove")) {
-                arithmeticCalculator.opRemoveResult();
-            }
-        } catch (NoSuchElementException e) {
-            System.out.println(e.getMessage());
+        String removeInput = sc.nextLine().trim();
+        if (removeInput.equals("remove")) {
+            arithmeticCalculator.opRemoveResult();
         }
 
         //전체 조회 여부 입력
         System.out.println("[사칙연산]저장된 연산결과를 조회하시겠습니까? (inquiry 입력 시 조회)");
-        try {
-            String removeInput = sc.nextLine().trim();
-            if (removeInput.equals("inquiry")) {
-                arithmeticCalculator.opInquiryResults(calculate);
-            }
-        } catch (NoSuchElementException e) {
-            System.out.println(e.getMessage());
+        String inquiryInput = sc.nextLine().trim();
+        if (inquiryInput.equals("inquiry")) {
+            arithmeticCalculator.opInquiryResults(calculate);
         }
+
         return true;
     }
 
@@ -118,8 +108,6 @@ public class App {
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return false;
-        } catch (NoSuchElementException e) {
-            System.out.println(e.getMessage());
         }
         return true;
     }

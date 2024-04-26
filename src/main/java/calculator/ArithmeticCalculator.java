@@ -42,21 +42,30 @@ public class ArithmeticCalculator<T extends Number> extends Calculator {
 
     //가장 먼저 저장된 결과값 삭제
     public void opRemoveResult() {
-        if (getResults().isEmpty()) {
-            throw new NoSuchElementException("삭제할 연산 결과가 없습니다.");
+        try {
+            if (getResults().isEmpty()) {
+                throw new NoSuchElementException("삭제할 연산 결과가 없습니다.");
+            }
+            System.out.println("remove = " + getResults().poll());
+        } catch (NoSuchElementException e) {
+            System.out.println(e.getMessage());
         }
-        System.out.println("remove = " + getResults().poll());
+
     }
 
     //저장된 결과값 전체 조회
     public void opInquiryResults(double num) {
-        if (getResults().isEmpty()) {
-            throw new NoSuchElementException("조회할 연산 결과가 없습니다.");
+        try {
+            if (getResults().isEmpty()) {
+                throw new NoSuchElementException("조회할 연산 결과가 없습니다.");
+            }
+            getResults().stream()
+                    .filter(result -> result > num)
+                    .forEach(System.out::println);
+        } catch (NoSuchElementException e) {
+            System.out.println(e.getMessage());
         }
 
-        getResults().stream()
-                .filter(result -> result > num)
-                .forEach(System.out::println);
     }
 
 }

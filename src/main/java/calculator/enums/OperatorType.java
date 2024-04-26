@@ -1,5 +1,8 @@
 package calculator.enums;
 
+import lombok.Getter;
+
+@Getter
 public enum OperatorType {
     OPERATOR_ADD('+'),
     OPERATOR_SUBTRACT('-'),
@@ -14,7 +17,4 @@ public enum OperatorType {
         this.operatorName = c;
     }
 
-    public char getOperatorName() {
-        return operatorName;
-    }
 }
