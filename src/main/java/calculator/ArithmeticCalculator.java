@@ -7,7 +7,7 @@ import java.util.NoSuchElementException;
 import java.util.Objects;
 
 @NoArgsConstructor
-public class ArithmeticCalculator<T> extends Calculator {
+public class ArithmeticCalculator<T extends Number> extends Calculator {
 
     private T firstNumber;
     private T secondNumber;
