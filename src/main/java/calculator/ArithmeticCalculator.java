@@ -5,7 +5,6 @@ import lombok.NoArgsConstructor;
 
 import java.util.NoSuchElementException;
 import java.util.Objects;
-import java.util.Queue;
 
 @NoArgsConstructor
 public class ArithmeticCalculator<T> extends Calculator {
@@ -19,15 +18,15 @@ public class ArithmeticCalculator<T> extends Calculator {
     double calculate() {
         double result = 0;
         if (Objects.equals(OperatorType.OPERATOR_ADD.getOperatorName(), operator)) {
-            result = getAddOperator().operate((double) firstNumber, (double) secondNumber);
+            result = new AddOperator().operate((double) firstNumber, (double) secondNumber);
         } else if (Objects.equals(OperatorType.OPERATOR_SUBTRACT.getOperatorName(), operator)) {
-            result = getSubtractOperator().operate((double) firstNumber, (double) secondNumber);
+            result = new SubtractOperator().operate((double) firstNumber, (double) secondNumber);
         } else if (Objects.equals(OperatorType.OPERATOR_MULTIPLY.getOperatorName(), operator)) {
-            result = getMultiplyOperator().operate((double) firstNumber, (double) secondNumber);
+            result = new MultiplyOperator().operate((double) firstNumber, (double) secondNumber);
         } else if (Objects.equals(OperatorType.OPERATOR_DIVIDE.getOperatorName(), operator)) {
-            result = getDivideOperator().operate((double) firstNumber, (double) secondNumber);
+            result = new DivideOperator().operate((double) firstNumber, (double) secondNumber);
         } else if (Objects.equals(OperatorType.OPERATOR_MOD.getOperatorName(), operator)) {
-            result = getModOperator().operate((double) firstNumber, (double) secondNumber);
+            result = new ModOperator().operate((double) firstNumber, (double) secondNumber);
         } else {
             throw new IllegalArgumentException("[ +, -, /, *, % ] 이외에 입력되었습니다.");
         }
