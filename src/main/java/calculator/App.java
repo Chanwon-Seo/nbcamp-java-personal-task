@@ -8,7 +8,7 @@ public class App {
 
     public static void main(String[] args) {
         //Calculator 생성
-        ArithmeticCalculator arithmeticCalculator = new ArithmeticCalculator();
+        ArithmeticCalculator<Double> arithmeticCalculator = new ArithmeticCalculator<>();
         CircleCalculator circleCalculator = new CircleCalculator();
 
         String flag = "";
