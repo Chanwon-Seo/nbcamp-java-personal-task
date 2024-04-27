@@ -11,7 +11,7 @@ public enum OperatorType {
     OPERATOR_MOD('%');
 
 
-    private char operatorName;
+    private final char operatorName;
 
     OperatorType(char c) {
         this.operatorName = c;

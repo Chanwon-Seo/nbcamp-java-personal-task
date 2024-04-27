@@ -1,6 +1,8 @@
 package calculator;
 
 
+import calculator.enums.AppMessageType;
+
 import java.util.*;
 
 public class App {
@@ -12,7 +14,7 @@ public class App {
         CircleCalculator circleCalculator = new CircleCalculator();
 
         String flag = "";
-        while (!flag.equals("exit")) {
+        while (!Objects.equals(AppMessageType.EXIT.getMessageName(), flag)) {
             //작업 수행 입력
             System.out.println("어떤 작업을 수행하시겠습니까? [사칙연산], [원의 넓이]");
             boolean isValid = switch (sc.nextLine().trim()) {
@@ -49,7 +51,7 @@ public class App {
             System.out.print("사칙연산 기호를 입력하세요: ");
             operatorInput = sc.nextLine().trim().charAt(0);
         } catch (NumberFormatException e) {
-            System.out.println("잘못된 입력입니다. 숫자를 입력하세요.");
+            System.out.println(AppMessageType.INVALID_INPUT.getMessageName());
             return false;
         }
 
@@ -58,8 +60,7 @@ public class App {
         //연산 결과값 출력 및 저장
         double calculate;
         try {
-            calculate = arithmeticCalculator.calculate();
-            arithmeticCalculator.addCalculation(calculate);
+            calculate = addCalculate(arithmeticCalculator);
             System.out.println("[사칙연산] 결과 = " + calculate + "\n");
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
@@ -68,15 +69,19 @@ public class App {
 
         //삭제 여부 입력
         System.out.println("[사칙연산]가장 먼저 저장된 연산 결과를 삭제하시겠습니까? (remove 입력 시 삭제)");
-        String removeInput = sc.nextLine().trim();
-        if (removeInput.equals("remove")) {
+        if (Objects.equals(
+                AppMessageType.REMOVE.getMessageName(),
+                sc.nextLine().trim())
+        ) {
             arithmeticCalculator.opRemoveResult();
         }
 
         //전체 조회 여부 입력
         System.out.println("[사칙연산]저장된 연산결과를 조회하시겠습니까? (inquiry 입력 시 조회)");
-        String inquiryInput = sc.nextLine().trim();
-        if (inquiryInput.equals("inquiry")) {
+        if (Objects.equals(
+                AppMessageType.INQUIRY.getMessageName(),
+                sc.nextLine().trim())
+        ) {
             arithmeticCalculator.opInquiryResults(calculate);
         }
 
@@ -93,7 +98,7 @@ public class App {
             System.out.print("반지름을 입력하세요: ");
             radius = Double.parseDouble(sc.nextLine().trim());
         } catch (NumberFormatException e) {
-            System.out.println("잘못된 입력입니다. 숫자를 입력하세요.");
+            System.out.println(AppMessageType.INVALID_INPUT.getMessageName());
             return false;
         }
 
@@ -101,8 +106,7 @@ public class App {
 
         //원의 넓이 구한 후 출력 및 저장 후 전체 조회
         try {
-            double area = circleCalculator.calculate();
-            circleCalculator.addCalculation(area);
+            double area = addCalculate(circleCalculator);
             System.out.println("[원의 넓이]결과 = " + area + "\n");
             circleCalculator.opInquiryResults();
         } catch (IllegalArgumentException e) {
@@ -110,6 +114,13 @@ public class App {
             return false;
         }
         return true;
+    }
+
+    private static double addCalculate(Calculator arithmeticCalculator) {
+        double calculate;
+        calculate = arithmeticCalculator.calculate();
+        arithmeticCalculator.addCalculation(calculate);
+        return calculate;
     }
 
 
