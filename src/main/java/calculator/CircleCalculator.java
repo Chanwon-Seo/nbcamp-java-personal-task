@@ -19,7 +19,7 @@ public class CircleCalculator extends Calculator {
     @Override
     double calculate() {
 
-        if (radius <= 0) {
+        if (radius < 0) {
             throw new IllegalArgumentException("반지름은 양수여야 합니다.");
         }
 
