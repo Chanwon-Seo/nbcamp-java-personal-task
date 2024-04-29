@@ -1,4 +1,6 @@
-package calculator;
+package calculator.arithmeticoperator;
+
+import calculator.Operator;
 
 public class DivideOperator implements Operator {
 

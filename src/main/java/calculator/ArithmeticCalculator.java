@@ -1,12 +1,12 @@
 package calculator;
 
-import calculator.enums.OperatorType;
-import lombok.NoArgsConstructor;
+import calculator.arithmeticoperator.*;
 
 import java.util.NoSuchElementException;
 import java.util.Objects;
 
-@NoArgsConstructor
+import static calculator.enums.OperatorType.*;
+
 public class ArithmeticCalculator<T extends Number> extends Calculator {
 
     private T firstNumber;
@@ -17,15 +17,15 @@ public class ArithmeticCalculator<T extends Number> extends Calculator {
     @Override
     double calculate() {
         double result = 0;
-        if (Objects.equals(OperatorType.OPERATOR_ADD.getOperatorName(), operator)) {
+        if (Objects.equals(OPERATOR_ADD.getOperatorName(), operator)) {
             result = new AddOperator().operate((double) firstNumber, (double) secondNumber);
-        } else if (Objects.equals(OperatorType.OPERATOR_SUBTRACT.getOperatorName(), operator)) {
+        } else if (Objects.equals(OPERATOR_SUBTRACT.getOperatorName(), operator)) {
             result = new SubtractOperator().operate((double) firstNumber, (double) secondNumber);
-        } else if (Objects.equals(OperatorType.OPERATOR_MULTIPLY.getOperatorName(), operator)) {
+        } else if (Objects.equals(OPERATOR_MULTIPLY.getOperatorName(), operator)) {
             result = new MultiplyOperator().operate((double) firstNumber, (double) secondNumber);
-        } else if (Objects.equals(OperatorType.OPERATOR_DIVIDE.getOperatorName(), operator)) {
+        } else if (Objects.equals(OPERATOR_DIVIDE.getOperatorName(), operator)) {
             result = new DivideOperator().operate((double) firstNumber, (double) secondNumber);
-        } else if (Objects.equals(OperatorType.OPERATOR_MOD.getOperatorName(), operator)) {
+        } else if (Objects.equals(OPERATOR_MOD.getOperatorName(), operator)) {
             result = new ModOperator().operate((double) firstNumber, (double) secondNumber);
         } else {
             throw new IllegalArgumentException("[ +, -, /, *, % ] 이외에 입력되었습니다.");
