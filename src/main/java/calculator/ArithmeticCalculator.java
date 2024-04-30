@@ -3,6 +3,7 @@ package calculator;
 import calculator.enums.OperatorType;
 
 import java.util.NoSuchElementException;
+import java.util.Queue;
 
 
 public class ArithmeticCalculator<T extends Number> extends Calculator {
@@ -41,21 +42,21 @@ public class ArithmeticCalculator<T extends Number> extends Calculator {
         } catch (NoSuchElementException e) {
             System.out.println(e.getMessage());
         }
-
     }
 
     //저장된 결과값 전체 조회
-    public void opInquiryResults(double num) {
+    Queue<Double> opInquiryResults() {
         try {
             if (getResults().isEmpty()) {
                 throw new NoSuchElementException("조회할 연산 결과가 없습니다.");
             }
-            getResults().stream()
-                    .filter(result -> result > num)
-                    .forEach(System.out::println);
+//            getResults().stream()
+//                    .filter(result -> result > )
+//                    .forEach(System.out::println);
         } catch (NoSuchElementException e) {
             System.out.println(e.getMessage());
         }
+        return getResults();
 
     }
 

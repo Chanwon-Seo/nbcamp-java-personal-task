@@ -2,6 +2,7 @@ package calculator;
 
 
 import java.util.NoSuchElementException;
+import java.util.Queue;
 
 public class CircleCalculator extends Calculator {
     private final static double PI = 3.14159265358979323846;
@@ -28,21 +29,15 @@ public class CircleCalculator extends Calculator {
     }
 
     //저장된 결과값 전체 조회
-    void opInquiryResults() {
+    Queue<Double> opInquiryResults() {
         try {
             if (getResults().isEmpty()) {
                 throw new NoSuchElementException("조회할 연산 결과가 없습니다.");
             }
-
-            int index = 1;
-            for (Double result : getResults()) {
-                System.out.println(index + "번째 결과는 = " + result);
-                index++;
-            }
         } catch (NoSuchElementException e) {
             System.out.println(e.getMessage());
         }
-
+            return getResults();
     }
 
 }

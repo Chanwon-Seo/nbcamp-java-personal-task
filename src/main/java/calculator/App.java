@@ -81,7 +81,11 @@ public class App {
                 INQUIRY.getMessageName(),
                 sc.nextLine().trim().toLowerCase())
         ) {
-            arithmeticCalculator.opInquiryResults(calculate);
+            Queue<Double> queue = arithmeticCalculator.opInquiryResults();
+
+            queue.stream()
+                    .filter(result -> result > calculate)
+                    .forEach(System.out::println);
         }
 
         return true;
@@ -107,13 +111,19 @@ public class App {
         try {
             double area = addToCalculatorResultList(circleCalculator);
             System.out.println("[원의 넓이]결과 = " + area + "\n");
-            circleCalculator.opInquiryResults();
+            int index = 1;
+            for (Double result : circleCalculator.opInquiryResults()) {
+                System.out.println(index + "번째 결과는 = " + result);
+                index++;
+            }
+
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return false;
         }
         return true;
     }
+
     //저장 통합 메서드
     private static double addToCalculatorResultList(Calculator arithmeticCalculator) {
         double calculate;

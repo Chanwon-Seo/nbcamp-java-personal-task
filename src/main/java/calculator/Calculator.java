@@ -18,4 +18,6 @@ public abstract class Calculator {
     }
 
     abstract double calculate();
+
+    abstract Queue<Double> opInquiryResults();
 }
