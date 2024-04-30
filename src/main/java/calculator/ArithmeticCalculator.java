@@ -1,40 +1,31 @@
 package calculator;
 
-import calculator.arithmeticoperator.*;
+import calculator.enums.OperatorType;
 
 import java.util.NoSuchElementException;
-import java.util.Objects;
 
-import static calculator.enums.OperatorType.*;
 
 public class ArithmeticCalculator<T extends Number> extends Calculator {
 
     private T firstNumber;
     private T secondNumber;
-    private char operator;
+    private String operator;
 
     //연산 수행
     @Override
     double calculate() {
-        double result = 0;
-        if (Objects.equals(OPERATOR_ADD.getOperatorName(), operator)) {
-            result = new AddOperator().operate((double) firstNumber, (double) secondNumber);
-        } else if (Objects.equals(OPERATOR_SUBTRACT.getOperatorName(), operator)) {
-            result = new SubtractOperator().operate((double) firstNumber, (double) secondNumber);
-        } else if (Objects.equals(OPERATOR_MULTIPLY.getOperatorName(), operator)) {
-            result = new MultiplyOperator().operate((double) firstNumber, (double) secondNumber);
-        } else if (Objects.equals(OPERATOR_DIVIDE.getOperatorName(), operator)) {
-            result = new DivideOperator().operate((double) firstNumber, (double) secondNumber);
-        } else if (Objects.equals(OPERATOR_MOD.getOperatorName(), operator)) {
-            result = new ModOperator().operate((double) firstNumber, (double) secondNumber);
-        } else {
-            throw new IllegalArgumentException("[ +, -, /, *, % ] 이외에 입력되었습니다.");
-        }
-        return result;
+        return switch (operator) {
+            case "+" -> OperatorType.PLUS.calculate((Double) firstNumber, (Double) secondNumber);
+            case "-" -> OperatorType.MINUS.calculate((Double) firstNumber, (Double) secondNumber);
+            case "*" -> OperatorType.MULTIPLY.calculate((Double) firstNumber, (Double) secondNumber);
+            case "/" -> OperatorType.DIVIDE.calculate((Double) firstNumber, (Double) secondNumber);
+            case "%" -> OperatorType.MOD.calculate((Double) firstNumber, (Double) secondNumber);
+            default -> throw new IllegalArgumentException("[ +, -, /, *, % ] 이외에 입력되었습니다.");
+        };
     }
 
     //필드값 주입
-    public void toArithmeticCalculator(T firstNumberInput, T secondNumberInput, char operatorInput) {
+    public void toArithmeticCalculator(T firstNumberInput, T secondNumberInput, String operatorInput) {
         this.firstNumber = firstNumberInput;
         this.secondNumber = secondNumberInput;
         this.operator = operatorInput;

@@ -1,7 +1,5 @@
 package calculator.arithmeticoperator;
 
-import calculator.Operator;
-
 public class MultiplyOperator implements Operator {
 
     @Override

@@ -1,7 +1,5 @@
 package calculator.arithmeticoperator;
 
-import calculator.Operator;
-
 public class ModOperator implements Operator {
     @Override
     public double operate(double firstNum, double secondNum) {

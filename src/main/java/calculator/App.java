@@ -37,7 +37,7 @@ public class App {
         System.out.println("사칙연산 계산기\n");
         //사칙연산에 필요한 입력
         double firstNumberInput, secondNumberInput;
-        char operatorInput;
+        String operatorInput;
         try {
             //첫 번째 숫자
             System.out.print("첫 번째 숫자를 입력하세요: ");
@@ -48,7 +48,7 @@ public class App {
 
             //사용자로부터 사칙연산 기호 입력
             System.out.print("사칙연산 기호를 입력하세요: ");
-            operatorInput = sc.nextLine().trim().toLowerCase().charAt(0);
+            operatorInput = sc.nextLine().trim().toLowerCase();
         } catch (NumberFormatException e) {
             System.out.println("잘못된 입력입니다. 숫자를 입력하세요.");
             return false;
